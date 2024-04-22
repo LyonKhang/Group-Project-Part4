@@ -150,7 +150,7 @@ construct_repeat:
     {
       // First semantic action
       // TODO: store in the stack the entry number of the next instruction to be generated (use @$.begin.line instead of $$)
-      @$.begin.line = INSTRUCTION_NEXT;
+      @1.begin.line = INSTRUCTION_NEXT;
     }
     stmt_list 
     T_UNTIL 
