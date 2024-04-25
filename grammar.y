@@ -179,21 +179,18 @@ construct_if :
       // DEFINE_ME = change to proper values.
       // TBDARG = Should modify the corresponding address (.addr#) in a later semantic action.
       // NOARG = No need to change.
-      // itab_instruction_add (itab, OP_JZ, $3->addr, NOARG, $3->addr);
       itab_instruction_add (itab, OP_JZ, $3->addr, NOARG, TBDARG);
       @$.begin.line = INSTRUCTION_LAST; // INSTRUCTION_NEXT or INSTRUCTION_LAST
     }
     stmt 
     {
       // Second semantic action
-      // int jump_dst = @3.begin.line;
       int jump_dst = TBDARG;
       itab_instruction_add (itab, OP_JMP, NOARG, NOARG, jump_dst);
       @$.begin.line = INSTRUCTION_LAST; // INSTRUCTION_NEXT or INSTRUCTION_LAST
 
       int jmp_entry = @5.begin.line;
-      // itab->tab[jmp_entry]->addr3 = INSTRUCTION_LAST; // INSTRUCTION_NEXT or INSTRUCTION_LAST
-      itab->tab[jmp_entry]->addr3 = INSTRUCTION_NEXT;
+      itab->tab[jmp_entry]->addr3 = INSTRUCTION_NEXT; // INSTRUCTION_NEXT or INSTRUCTION_LAST
     }
     construct_else
     {
